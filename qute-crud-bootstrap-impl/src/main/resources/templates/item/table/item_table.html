@@ -1,0 +1,28 @@
+<table class="table caption-top">
+    <caption>List of items</caption>
+    <thead>
+        <tr>
+            <th scope="col">ID</th>
+            <th scope="col">Name</th>
+            <th scope="col">Description</th>
+            <th scope="col">Count</th>
+            <th scope="col">Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        {#for item in items}
+        <tr>
+            <th scope="row">{item.id}</th>
+            <td>{item.name}</td>
+            <td>{item.description}</td>
+            <td>{item.count}</td>
+            <td>
+                <form action="/item/{item.id}" method="POST" name="delete-{item.id}">
+                    <a class="btn btn-warning btn-sm" href="/item/{item.id}" role="button">Edit</a>
+                    <input class="btn btn-danger btn-sm" value="Delete" type="submit">
+                </form>
+            </td>
+        </tr>
+        {/for}
+    </tbody>
+</table>

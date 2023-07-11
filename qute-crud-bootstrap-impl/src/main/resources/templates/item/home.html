@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+{#include header}{/include}
+<html>
+    <body>
+        <div class="container text-center">
+            <div class="row">
+                <div class="col">
+                    <h1>Items CRUD</h1>
+                </div>
+            </div>
+
+            <div class="row border bg-secondary bg-gradient rounded-3">
+                {#insert item}{/}
+                {#if item.id != null}
+                <form action="/item/{item.id}/update" method="POST" enctype="multipart/form-data" name="update-{item.id}">
+                    <div class="mb-3">
+                        <label for="name" class="form-label">Item name</label>
+                        <input type="text" value="{item.name}" name="name" class="form-control" id="name" aria-describedby="itemName">
+                    </div>
+                    <div class="mb-3">
+                        <label for="description" class="form-label">Item description</label>
+                        <textarea name="description" class="form-control" id="description" rows="3">{item.description}</textarea>
+                    </div>
+                    <div class="mb-3">
+                        <label for="count" class="form-label">Item count</label>
+                        <input type="number" value="{item.count}" name="count" class="form-control" id="count" aria-describedby="itemCount">
+                    </div>
+                    <div class="mb-3">
+                        <button type="submit" class="btn btn-primary">Edit</button>
+                    </div>
+                    {#else}
+                    <form action="/item/add" method="POST" enctype="multipart/form-data" name="add">
+                        <div class="mb-3">
+                            <label for="name" class="form-label">Item name</label>
+                            <input type="text" name="name" class="form-control" id="name" aria-describedby="itemName">
+                        </div>
+                        <div class="mb-3">
+                            <label for="itemDescription" class="form-label">Item description</label>
+                            <textarea name="description" class="form-control" id="itemDescription" rows="3"></textarea>
+                        </div>
+                        <div class="mb-3">
+                            <label for="itemCount" class="form-label">Item count</label>
+                            <input type="number" name="count" class="form-control" id="itemCount" aria-describedby="itemCount">
+                        </div>
+                        <div class="mb-3">
+                            <button type="submit" class="btn btn-primary">Add</button>
+                        </div>
+                        {/if}
+                    </form>
+
+            </div>
+
+            <div class="row border bg-success bg-gradient rounded-3">
+                <div class="col">
+                    {#insert items}{/}
+                    {#include item/table/item_table.html}{/include}
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
